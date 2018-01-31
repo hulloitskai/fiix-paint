@@ -11,6 +11,7 @@ class Header extends Component {
 
     this.handleClearButtonClick = this.handleClearButtonClick.bind(this);
     this.handleUndoButtonClick = this.handleUndoButtonClick.bind(this);
+    this.handleSaveButtonClick = this.handleSaveButtonClick.bind(this);
   }
 
   handleClearButtonClick(event) {
@@ -21,6 +22,11 @@ class Header extends Component {
   handleUndoButtonClick(event) {
     event.preventDefault();
     this.callbackWithRequest("undo-drawing");
+  }
+
+  handleSaveButtonClick(event) {
+    event.preventDefault();
+    this.callbackWithRequest("save-drawings");
   }
 
   callbackWithRequest(request: string) {
@@ -38,7 +44,9 @@ class Header extends Component {
               Fiix Paint
             </a></h1>
             <div className="command-buttons">
-              <button className="undo-button"
+              <button className="other-button"
+                      onClick={this.handleSaveButtonClick}>save</button>
+              <button className="other-button"
                       onClick={this.handleUndoButtonClick}>undo</button>
               <button className="clear-button"
                       onClick={this.handleClearButtonClick}>clear</button>

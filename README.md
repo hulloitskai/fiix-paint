@@ -11,4 +11,5 @@ It runs on pure [React](https://reactjs.org) (although uses some development too
 
 #### Unplanned Additions `(30-01-18)`:
 * Added a 'clear drawings' button.
+* Added an 'undo' button.
 

@@ -35,6 +35,7 @@
 }
 
 .header-root button {
+  margin-left: 3pt;
   font-family: "Source Code Pro", sans-serif;;
   cursor: pointer;
   font-weight: 500;
@@ -58,11 +59,11 @@
   background-color: rgb(146, 46, 57);
 }
 
-.header-root button.undo-button {
-  color: white;
+.header-root button.other-button {
+  color: #dfdfdf;
   background-color: rgb(76, 77, 76);
 }
 
-.header-root button.undo-button:hover {
+.header-root button.other-button:hover {
   background-color: rgb(104, 98, 107);
 }

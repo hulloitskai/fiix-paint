@@ -24,6 +24,7 @@ class App extends Component {
           switch (event.state.request) {
             case "clear-drawings": this.canvas.clear(); break;
             case "undo-drawing": this.canvas.undoDrawing(); break;
+            case "save-drawings": this.canvas.saveDrawings(); break;
             default: alert("unknown request");
           }
           break;

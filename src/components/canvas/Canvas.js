@@ -1,7 +1,8 @@
 // @flow
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import './Canvas.css'
+import './Canvas.css';
+// import MongoManager from '../../scripts/MongoManager';
 
 class Canvas extends Component {
   constructor(props) {
@@ -87,7 +88,15 @@ class Canvas extends Component {
 
   clear() { this.setState(state => state.drawings = []); }
 
-  undoDrawing() { this.setState(state => state.drawings.pop()); }
+  undoDrawing() {
+    if (this.state.drawings.length > 0)
+      this.setState(state => state.drawings.pop());
+  }
+
+  saveDrawings() {
+    alert("Not yet implemented.");
+    // MongoManager.addEntry(this.state.drawings);
+  }
 
   render() {
     return (
