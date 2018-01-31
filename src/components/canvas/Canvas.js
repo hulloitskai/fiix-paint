@@ -13,8 +13,11 @@ class Canvas extends Component {
     };
 
     this.onMouseDown = this.onMouseDown.bind(this);
+    this.onTouchStart = this.onTouchStart.bind(this);
     this.onMouseUp = this.onMouseUp.bind(this);
+    this.onTouchEnd = this.onTouchEnd.bind(this);
     this.onMouseMove = this.onMouseMove.bind(this);
+    this.onTouchMove = this.onTouchMove.bind(this);
   }
 
   componentWillReceiveProps(props) {
@@ -25,19 +28,31 @@ class Canvas extends Component {
     event.persist();
     event.preventDefault();
     if (event.button === 0) {
-      this.setState(state => {
-        state.drawings.push({
-          pos: {
-            start: {x: event.clientX, y: event.clientY},
-            end: {x: event.clientX, y: event.clientY}
-          },
-          color: state.drawColor
-        });
-        state.drawModeActive = true;
-        return state;
-      });
+      this.addNewLine(event.clientX, event.clientY);
       document.addEventListener("mousemove", this.onMouseMove, true);
     }
+  }
+
+  onTouchStart(event) {
+    event.persist();
+    event.preventDefault();
+    let primaryTouch = event.touches[0];
+    this.addNewLine(primaryTouch.clientX, primaryTouch.clientY);
+    document.addEventListener("touchmove", this.onTouchMove, true);
+  }
+
+  addNewLine(x: number, y: number) {
+    this.setState(state => {
+      state.drawings.push({
+        pos: {
+          start: {x: x, y: y},
+          end: {x: x, y: y}
+        },
+        color: state.drawColor
+      });
+      state.drawModeActive = true;
+      return state;
+    });
   }
 
   onMouseUp(event) {
@@ -46,10 +61,25 @@ class Canvas extends Component {
     document.removeEventListener("mousemove", this.onMouseMove, true);
   }
 
+  onTouchEnd(event) {
+    event.preventDefault();
+    this.setState(state => state.drawModeActive = false);
+    document.removeEventListener("touchmove", this.ontouchMove, true);
+  }
+
   onMouseMove(event) {
+    this.updateLastLine(event.clientX, event.clientY);
+  }
+
+  onTouchMove(event) {
+    let primaryTouch = event.touches[0];
+    this.updateLastLine(primaryTouch.clientX, primaryTouch.clientY);
+  }
+
+  updateLastLine(x: number, y: number) {
     this.setState(state => {
       state.drawings[state.drawings.length - 1].pos.end = {
-        x: event.clientX, y: event.clientY
+        x: x, y: y
       };
       return state;
     });
@@ -59,7 +89,9 @@ class Canvas extends Component {
     return (
         <div className="canvas-root"
              onMouseDown={this.onMouseDown}
-             onMouseUp={this.onMouseUp}>{
+             onTouchStart={this.onTouchStart}
+             onMouseUp={this.onMouseUp}
+             onTouchEnd={this.onTouchEnd}>{
           this.state.drawings.map((drawing, index) => {
 
             let x1 = drawing.pos.start.x;

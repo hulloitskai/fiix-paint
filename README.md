@@ -6,5 +6,5 @@ It runs on pure [React](https://reactjs.org) (although uses some development too
 
 ### Upcoming Updates:
 - [ ] Persistent drawings using Mongo.
-- [ ] Touch & mobile-friendly capablities.
+- [x] Touch & mobile-friendly capabilities.
 - [ ] Potentially, different drawing tools (time permitting).

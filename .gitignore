@@ -66,3 +66,6 @@ out/
 *.iml
 *.ipr
 *.iws
+
+# Ignore build (output) folder
+build
