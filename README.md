@@ -1,13 +1,13 @@
 # fiix-paint
 [fiix-paint](http://stevenxie.me/fiix-paint) is a toy webapp that allows you to make online drawings! 
-It runs on pure [React](https://reactjs.org) (although uses some development tools like [Flow](flow.org) for type-safety in order to make development easier.
+It runs on pure [React](https://reactjs.org) and uses local storage to save drawings. It's also mobile-friendly (try it on an Android or iOS browser)!
 
 ---
 
 ### Upcoming Updates:
-- [ ] Persistent drawings using Mongo.
+- [x] Persistent drawings using ~~Mongo~~ local storage; Mongo requires a Node backend, which complicates hosting.
 - [x] Touch & mobile-friendly capabilities.
-- [ ] Potentially, different drawing tools (time permitting).
+- [ ] ~~Potentially, different drawing tools (time permitting).~~ Midterms are coming up, not a whole lot of time to spare...
 
 #### Unplanned Additions `(30-01-18)`:
 * Added a 'clear drawings' button.

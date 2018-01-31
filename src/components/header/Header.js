@@ -6,12 +6,14 @@ class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      onButtonClick: props.onButtonClick
+      onButtonClick: props.onButtonClick,
+      saveButtonMode: 'default',
     };
 
     this.handleClearButtonClick = this.handleClearButtonClick.bind(this);
     this.handleUndoButtonClick = this.handleUndoButtonClick.bind(this);
     this.handleSaveButtonClick = this.handleSaveButtonClick.bind(this);
+    this.onSaveCompletion = this.onSaveCompletion.bind(this);
   }
 
   handleClearButtonClick(event) {
@@ -26,10 +28,24 @@ class Header extends Component {
 
   handleSaveButtonClick(event) {
     event.preventDefault();
-    this.callbackWithRequest("save-drawings");
+    this.state.onButtonClick({
+      sender: "Header",
+      state: {
+        request: "save-drawings",
+        callback: this.onSaveCompletion
+      }
+    });
   }
 
-  callbackWithRequest(request: string) {
+  onSaveCompletion(success) {
+    this.setState(state => state.saveButtonMode = 'green');
+    this.setState = this.setState.bind(this);
+    setTimeout(() => {
+      this.setState(state => state.saveButtonMode = 'default');
+    }, 750);
+  }
+
+  callbackWithRequest(request) {
     this.state.onButtonClick({
       sender: "Header",
       state: { request: request }
@@ -44,7 +60,7 @@ class Header extends Component {
               Fiix Paint
             </a></h1>
             <div className="command-buttons">
-              <button className="other-button"
+              <button className={"other-button " + this.state.saveButtonMode}
                       onClick={this.handleSaveButtonClick}>save</button>
               <button className="other-button"
                       onClick={this.handleUndoButtonClick}>undo</button>

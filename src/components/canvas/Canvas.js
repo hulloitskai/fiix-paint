@@ -2,7 +2,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import './Canvas.css';
-// import MongoManager from '../../scripts/MongoManager';
+import DataConnector from '../../services/DataConnector.js';
 
 class Canvas extends Component {
   constructor(props) {
@@ -19,6 +19,13 @@ class Canvas extends Component {
     this.onTouchEnd = this.onTouchEnd.bind(this);
     this.onMouseMove = this.onMouseMove.bind(this);
     this.onTouchMove = this.onTouchMove.bind(this);
+  }
+
+  componentDidMount() {
+    let savedDrawings = DataConnector.loadDrawings();
+    if (savedDrawings !== null) {
+      this.setState(state => state.drawings = savedDrawings);
+    }
   }
 
   componentWillReceiveProps(props) {
@@ -42,7 +49,7 @@ class Canvas extends Component {
     document.addEventListener("touchmove", this.onTouchMove, true);
   }
 
-  addNewLine(x: number, y: number) {
+  addNewLine(x, y) {
     this.setState(state => {
       state.drawings.push({
         pos: {
@@ -77,7 +84,7 @@ class Canvas extends Component {
     this.updateLastLine(primaryTouch.clientX, primaryTouch.clientY);
   }
 
-  updateLastLine(x: number, y: number) {
+  updateLastLine(x, y) {
     this.setState(state => {
       state.drawings[state.drawings.length - 1].pos.end = {
         x: x, y: y
@@ -93,9 +100,9 @@ class Canvas extends Component {
       this.setState(state => state.drawings.pop());
   }
 
-  saveDrawings() {
-    alert("Not yet implemented.");
-    // MongoManager.addEntry(this.state.drawings);
+  saveDrawings(callback) {
+    let res = DataConnector.saveDrawings(this.state.drawings);
+    callback(res);
   }
 
   render() {

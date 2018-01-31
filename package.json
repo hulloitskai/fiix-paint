@@ -2,9 +2,8 @@
   "name": "fiix-paint",
   "version": "0.1.0",
   "homepage": "http://stevenxie.me/fiix-paint",
-  "private": true,
+  "author": "steven.xie@outlook.com",
   "dependencies": {
-    "mongodb": "^3.0.2",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
@@ -19,7 +18,6 @@
     "deploy": "gh-pages -d build"
   },
   "devDependencies": {
-    "flow-bin": "^0.64.0",
     "gh-pages": "^1.1.0"
   }
 }

@@ -14,12 +14,12 @@ class Button extends Component {
     this.callback = this.callback.bind(this);
   }
 
-  handleClick(event: MouseEvent) {
+  handleClick(event) {
     event.preventDefault();
     this.callback({}); // Sends empty object to create callback.
   }
 
-  callback(event: Object) {
+  callback(event) {
     if (!event.hasOwnProperty("sender")) event.sender = "Button";
     this.state.onClick(event);
   }

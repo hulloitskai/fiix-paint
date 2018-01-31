@@ -16,7 +16,7 @@ class ColorPanel extends Component {
   }
 
   // Forward to parent
-  handleButtonClick(event: Object) {
+  handleButtonClick(event) {
     this.setState(state => state.selectedID = event.id);
     this.state.onNewEvent(event);
   }

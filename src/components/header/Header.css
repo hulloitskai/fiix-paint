@@ -67,3 +67,18 @@
 .header-root button.other-button:hover {
   background-color: rgb(104, 98, 107);
 }
+
+.header-root button.other-button.green {
+  background: #1c8630;
+  transition-duration: 200ms;
+}
+
+@media (max-width: 700px) {
+  .header-root div.command-buttons {
+    top: 45pt;
+  }
+
+  .header-root button {
+    padding: 5pt 8pt;
+  }
+}

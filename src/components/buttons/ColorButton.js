@@ -15,7 +15,7 @@ class ColorButton extends Button {
     this.setState(state => state.selected = props.selected);
   }
 
-  callback(event: Object) {
+  callback(event) {
     event.sender = "ColorButton";
     event.state = {
       color: this.state.color

@@ -14,7 +14,7 @@ class App extends Component {
     this.handleEvent = this.handleEvent.bind(this);
   }
 
-  handleEvent(event: Object) {
+  handleEvent(event) {
     if (event.hasOwnProperty("sender")) {
       switch (event.sender) {
         case "ColorButton":
@@ -24,7 +24,9 @@ class App extends Component {
           switch (event.state.request) {
             case "clear-drawings": this.canvas.clear(); break;
             case "undo-drawing": this.canvas.undoDrawing(); break;
-            case "save-drawings": this.canvas.saveDrawings(); break;
+            case "save-drawings":
+              this.canvas.saveDrawings(event.state.callback);
+              break;
             default: alert("unknown request");
           }
           break;
