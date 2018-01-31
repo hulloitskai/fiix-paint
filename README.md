@@ -8,3 +8,7 @@ It runs on pure [React](https://reactjs.org) (although uses some development too
 - [ ] Persistent drawings using Mongo.
 - [x] Touch & mobile-friendly capabilities.
 - [ ] Potentially, different drawing tools (time permitting).
+
+#### Unplanned Additions `(30-01-18)`:
+* Added a 'clear drawings' button.
+

@@ -85,6 +85,10 @@ class Canvas extends Component {
     });
   }
 
+  clear() { this.setState(state => state.drawings = []); }
+
+  undoDrawing() { this.setState(state => state.drawings.pop()); }
+
   render() {
     return (
         <div className="canvas-root"

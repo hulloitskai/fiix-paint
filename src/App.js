@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import ColorPanel from './components/panels/ColorPanel.js'
-import Canvas from './components/canvas/Canvas.js'
+import ColorPanel from './components/panels/ColorPanel.js';
+import Canvas from './components/canvas/Canvas.js';
+import Header from './components/header/Header.js';
 import './App.css';
 
 class App extends Component {
@@ -10,26 +11,37 @@ class App extends Component {
       drawColor: "lightblue"
     };
 
-    this.handlePanelEvent = this.handlePanelEvent.bind(this);
+    this.handleEvent = this.handleEvent.bind(this);
   }
 
-  handlePanelEvent(event: Object) {
-    if (event.hasOwnProperty("sender") && event.sender === "ColorButton") {
-      this.setState(state => state.drawColor = event.state.color);
+  handleEvent(event: Object) {
+    if (event.hasOwnProperty("sender")) {
+      switch (event.sender) {
+        case "ColorButton":
+          this.setState(state => state.drawColor = event.state.color);
+          break;
+        case "Header":
+          switch (event.state.request) {
+            case "clear-drawings": this.canvas.clear(); break;
+            case "undo-drawing": this.canvas.undoDrawing(); break;
+            default: alert("unknown request");
+          }
+          break;
+        default: alert("unknown request");
+      }
     }
   }
 
   render() {
     return (
         <div className="app-root">
-          <header className="app-header">
-            <h1>Fiix Paint</h1>
-          </header>
+          <Header onButtonClick={this.handleEvent}/>
           <div className="left-panel">
-            <ColorPanel onNewEvent={this.handlePanelEvent}/>
+            <ColorPanel onNewEvent={this.handleEvent}/>
           </div>
           <div className="canvas">
-            <Canvas drawColor={this.state.drawColor} />
+            <Canvas drawColor={this.state.drawColor}
+                    ref={ref => { this.canvas = ref; }}/>
           </div>
         </div>
     );

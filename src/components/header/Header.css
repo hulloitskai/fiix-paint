@@ -1,0 +1,68 @@
+.header-root header.app-header {
+  position: absolute;
+  left: 0; top: 0; right: 0;
+  text-align: center;
+  background-color: #222;
+  padding: 5pt;
+  color: white;
+  display: flex;
+  z-index: 2;
+}
+
+.header-root header.app-header h1 {
+  flex: 1;
+  font-family: Source Sans Pro, sans-serif;
+  font-weight: 400;
+  font-size: 2em;
+  margin: 0;
+}
+
+.header-root header.app-header a {
+  color: white;
+  text-decoration: none;
+  opacity: 1;
+  transition: opacity 200ms ease-in-out;
+}
+
+.header-root header.app-header a:hover {
+  opacity: 0.8;
+}
+
+.header-root div.command-buttons {
+  position: absolute;
+  top: 6pt;
+  right: 6pt;
+}
+
+.header-root button {
+  font-family: "Source Code Pro", sans-serif;;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 12.5pt;
+  border: 0;
+  border-radius: 7.5pt;
+  padding: 5pt 10pt;
+  -webkit-transition: background-color 200ms ease-in-out;
+  -moz-transition: background-color 200ms ease-in-out;
+  -ms-transition: background-color 200ms ease-in-out;
+  -o-transition: background-color 200ms ease-in-out;
+  transition: background-color 200ms ease-in-out;
+}
+
+.header-root button.clear-button {
+  color: #ff767c;
+  background-color: rgb(99, 30, 37);
+}
+
+.header-root button.clear-button:hover {
+  background-color: rgb(146, 46, 57);
+}
+
+.header-root button.undo-button {
+  color: white;
+  background-color: rgb(76, 77, 76);
+}
+
+.header-root button.undo-button:hover {
+  background-color: rgb(104, 98, 107);
+}

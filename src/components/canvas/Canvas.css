@@ -7,7 +7,8 @@
   cursor: crosshair;
 }
 
-div.drawn-line {
+.canvas-root div.drawn-line {
   position: absolute;
   height: 1.5pt;
+  z-index: 1;
 }
